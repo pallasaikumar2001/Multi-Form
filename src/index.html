@@ -5,60 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
   <title>Multi Form</title>
-  <script src="multiform.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
 
 </head>
 <body class="h-screen w-screen flex bg-[color:hsl(206,94%,87%)] justify-center items-center"> 
-    <div class=" flex p-4 justify-around text-center text-xl bg-white rounded-xl m-20 gap-2"> 
+    <div class=" flex md:flex-row md:h-fit flex-col lg:flex-row p-4 text-center text-xl bg-white rounded-xl m-20 gap-2"> 
         <div class="relative">
-            <img src="bg-sidebar-desktop.svg" alt="" class="">
-            <div class=" flex flex-col absolute z-3 top-0 text-white text-start p-7 gap-y-5 w-[130%]">
+            <img src="bg-sidebar-desktop.svg" alt="Sidebar Desktop" class="hidden md:block w-full">
+            <img src="bg-sidebar-mobile.svg" alt="Sidebar Mobile" class="md:hidden w-[100%]">
+            <div class=" flex md:flex-col  absolute z-3 top-0 text-white text-start p-7 gap-y-5 w-[130%] sm:w-[100%] md:w[100%] md:z-0 sm:z-0 md:justify-center sm:justify-center">
                 <div class=" flex items-center gap-x-5 ">
                     <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[color:hsl(206,94%,87%)] ">1</div>
                     <div class="flex-column">
-                        <p class="text-sm">STEP 1</p>
-                        <h3 class="font-bold text-base">YOUR INFO</h3>
+                        <p class="text-sm hidden md:block">STEP 1</p>
+                        <h3 class="font-bold text-base hidden md:block">YOUR INFO</h3>
                     </div>
                 </div>
                 
                 <div class=" flex items-center gap-x-5 ">
                     <div class="number flex h-10 w-10  rounded-3xl justify-center items-center border-[1px] border-[color:hsl(206,94%,87%)] ">2</div>
                     <div class="detail">
-                        <p class="text-sm">STEP 2</p>
-                        <h3 class="font-bold text-base">SELECT PLAN</h3>
+                        <p class="text-sm hidden md:block">STEP 2</p>
+                        <h3 class="font-bold text-base hidden md:block">SELECT PLAN</h3>
                     </div>
                 </div>
+
                 <div class=" flex items-center gap-x-5 ">
                     <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[color:hsl(206,94%,87%)] ">3</div>
                     <div class="detail">
-                        <p class="text-sm">STEP 3</p>
-                        <h3 class="font-bold text-base">ADD-ONS</H3>
+                        <p class="text-sm hidden md:block">STEP 3</p>
+                        <h3 class="font-bold text-base hidden md:block">ADD-ONS</H3>
                     </div>
                 </div>
                 
                 <div class=" flex items-center gap-x-5 ">
                     <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[color:hsl(206,94%,87%)] ">4</div>
                     <div class="detail">
-                        <p class="text-sm">STEP 4</p>
-                        <h3 class="font-bold text-base">SUMMARY</h3>
+                        <p class="text-sm hidden md:block">STEP 4</p>
+                        <h3 class="font-bold text-base hidden md:block">SUMMARY</h3>
                     </div>
                 </div>
             </div>
         </div>
     
 
-           <!-- step-1  -->
 
-        <div class=" step 1 flex flex-col justify-start items-start pl-10 m-6 text-start">
+<!-- step-1  -->
+
+
+        <div class=" step 1 flex flex-col justify-start items-start pl-7 m-9 text-start ">
             <h1 class="font-bold text-2xl">Personal Info</h1>
             <p class="text-sm text-gray-500">Please provide your name, email address, and phone number</p>
             <h3 class="mt-5">Name</h3>
-            <input type="text" id="name" class="border-2 w-full mr-44 rounded-md p-2" required>
+            <input type="text" id="name" class="border-2 w-full mr-40 rounded-md p-2" required>
             <h3 class="mt-5">Email Address</h3>
             <input type="email" id="emailID" class="border-2 w-full rounded-md p-2" required>
             <h3 class="mt-5">Phone Number</h3>
             <input type="text" id="Phone-number" class="border-2 w-full rounded-md p-2" required>  
-            <div class="flex justify-end items-end pt-16 mt-14">
+            <div class="flex justify-end items-end pt-16 mt-11">
                 <button class="next bg-blue-950 text-white px-4 py-2 rounded-md" id="next-step">Next Step</button>
             </div>      
         </div>
@@ -66,12 +71,9 @@
             
 
 
+<!-- Step 2 -->
 
-         
-        
 
-        <!-- Step 2 -->
-        
         
         <div class="step 2 hidden flex-col text-start m-10 ml-16 gap-y-4" id="step-2">
             <h1 class="font-bold items-start text-2xl">Select your plan</h1>
@@ -81,21 +83,21 @@
                     <img src="icon-arcade.svg" alt="Arcade Plan" class="pb-5">
                     <div>
                         <h3 class="font-bold">Arcade</h3>
-                        <p>$9/mo</p>
+                        <p class="package 1">$9/mo</p>
                     </div>
                 </div>
                 <div class="text-sm border-[1px] cursor-pointer border-gray-400 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
                     <img src="icon-advanced.svg" alt="Advanced Plan" class="pb-5">
                     <div>
                         <h3 class="font-bold">Advanced</h3>
-                        <p>$12/mo</p>
+                        <p class="package 2">$12/mo</p>
                     </div>
                 </div>
                 <div class="text-sm border-[1px] cursor-pointer border-gray-400 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
                     <img src="icon-pro.svg" alt="Pro Plan" class="pb-5">
                     <div>
                         <h3 class="font-bold">Pro</h3>
-                        <p>$15/mo</p>
+                        <p class="package 3">$15/mo</p>
                     </div>
                 </div>
             </div>
@@ -119,8 +121,7 @@
 
 
 
-
-        <!-- step-3 -->
+<!-- step-3 -->
 
 
 
@@ -172,7 +173,7 @@
 <!-- step-4 -->
 
         <div class="step 4 hidden flex-col text-start gap-y-2 m-3 pl-12 pr-7 ">
-            <h1 class="font-bold text-3xl items-start">Finishing up</h1>
+            <h1 class="font-bold text-2xl items-start">Finishing up</h1>
             <p class="text-sm text-gray-500">Double-check everything looks OK before confirming</p>
             <div class="mt-10  bg-gray-100 flex flex-col gap-y-1 text-center items w-full pr-5">
                 <div class=" flex border-b-2 pl-7 pt-3 pb-3 gap-x-60 justify-between items-center text-start font-bold bg-gray-100">
@@ -209,6 +210,10 @@
 
     </div>
 
+    <script src="multiform.js"></script>
+
         
 </body>
 </html>
+
+

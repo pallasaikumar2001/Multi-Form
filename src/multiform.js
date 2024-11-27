@@ -20,7 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // step.style.display = index === count ? 'block' : 'none';
     }); 
     }
-
+    const price=document.querySelectorAll('.package')
+    console.log(price);
+    if (this.documentElement.getElementsByClassName('toggle input')== 'checked'){
+        price.forEach((amount)=>{
+            document.getElementsByClassName(amount).replace('amount')
+        })
+    }
         
     const nextButtons = document.querySelectorAll('.next'); 
     nextButtons.forEach((button) => { 
