@@ -27,7 +27,32 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementsByClassName(amount).replace('amount')
         })
     }
-        
+
+    const toggle = document.getElementById('toggle');
+    const togBall = document.getElementById('togBall');
+    const prices = document.querySelectorAll('.package.price');
+    const frees=document.querySelectorAll('.free')
+
+    toggle.addEventListener('click', () => {
+        if (toggle.checked) {
+            togBall.style.transform = 'translateX(32px)';
+            prices.forEach((priceElement,index) => {
+                const monthlyPrice = parseInt(priceElement.textContent.replace(/[^0-9]/g, ''));
+                const yearlyPrice = monthlyPrice * 10;
+                priceElement.textContent = `$${yearlyPrice}/year`;
+                frees[index].classList.remove('hidden')
+            });
+        } else {
+            togBall.style.transform = 'translateX(4px)';
+            prices.forEach((priceElement, index) => {
+                const monthlyPrices = [9, 12, 15]; 
+                priceElement.textContent = `$${monthlyPrices[index]}/mo`;
+                frees[index].classList.add('hidden');
+            });
+        }
+    });
+
+            
     const nextButtons = document.querySelectorAll('.next'); 
     nextButtons.forEach((button) => { 
         button.addEventListener('click', function () { 
