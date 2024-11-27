@@ -1,37 +1,43 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const steps = document.querySelectorAll('.step'); // Select all steps
-    let count = 0;
-    console.log(steps)
 
-    // Function to show/hide steps
-    const updateSteps = () => {
-        steps.forEach((step, index) => {
-            step.style.display = index === count ? 'block' : 'none';
-        });
-    };
 
-    // Handle Next button
-    const nextButtons = document.querySelectorAll('.next'); // Select all "Next" buttons
-    nextButtons.forEach((button) => {
-        button.addEventListener('click', function () {
-            if (count < steps.length - 1) {
-                count++;
-                updateSteps();
+document.addEventListener("DOMContentLoaded", function () { 
+    const steps = document.querySelectorAll('.step'); 
+    const nums = document.querySelectorAll('.number');
+    console.log(nums)
+    let count = 0; 
+    console.log(steps); 
+    const updateSteps = () => { 
+        steps.forEach((step, index) => { 
+            if (index === count) { 
+                step.style.display = 'block'; 
+                nums[index].style.backgroundColor = 'hsl(206,94%,87%) '; 
+                nums[index].style.color ='black'
+            } else { 
+                step.style.display = 'none'; 
+                nums[index].style.backgroundColor = 'transparent';  
+                nums[index].style.color='hsl(206,94%,87%)'
             }
-        });
-    });
+        // step.style.display = index === count ? 'block' : 'none';
+    }); 
+    }
 
-    // Handle Previous button
-    const prevButtons = document.querySelectorAll('.prev'); // Select all "Previous" buttons
-    prevButtons.forEach((button) => {
-        button.addEventListener('click', function () {
-            if (count > 0) {
-                count--;
-                updateSteps();
-            }
-        });
-    });
-
-    // Initialize to show the first step
-    updateSteps();
-});
+        
+    const nextButtons = document.querySelectorAll('.next'); 
+    nextButtons.forEach((button) => { 
+        button.addEventListener('click', function () { 
+            if (count < steps.length - 1) { 
+                count++; updateSteps(); 
+            } 
+        }); 
+    }); 
+    const prevButtons = document.querySelectorAll('.prev'); 
+    prevButtons.forEach((button) => { 
+        button.addEventListener('click', function () { 
+            if (count > 0) { 
+                count--; 
+                updateSteps(); 
+            } 
+        }); 
+    }); 
+    updateSteps(); 
+})
