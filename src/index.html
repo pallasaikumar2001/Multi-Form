@@ -81,31 +81,35 @@
             <h1 class="font-bold items-start text-2xl">Select your plan</h1>
             <p class="text-sm text-gray-500">You have the option of monthly or yearly billing</p>
             <div id="plans" class="flex justify-between gap-2 pt-10">
-                <div type="radio" class="selected hover:border-purple-700 text-sm border-[1px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
-                    <img src="icon-arcade.svg" alt="Arcade Plan" class=" pb-5">
-                    <div>
+                <div id="plan1" class="plan hover:border-purple-700 text-sm border-[1px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
+                    <img src="icon-arcade.svg" alt="Arcade Plan" class="pb-5">
+                    <div class="price">
                         <h3 class="font-bold">Arcade</h3>
-                        <p class="package price text-gray-500">$9/mo</p>
+                        <p class="package text-gray-500">$9/mo</p>
                         <p class="free text-blue-950 hidden">2 months free</p>
                     </div>
                 </div>
-                <div type="radio" class="selected hover:border-purple-700 text-sm border-[1px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
+            
+                <div id="plan2" class="plan hover:border-purple-700 text-sm border-[1px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
                     <img src="icon-advanced.svg" alt="Advanced Plan" class="pb-5">
-                    <div>
+                    <div class="price">
                         <h3 class="font-bold">Advanced</h3>
-                        <p class="package price text-gray-500">$12/mo</p>
+                        <p class="package text-gray-500">$12/mo</p>
                         <p class="free text-blue-950 hidden">2 months free</p>
                     </div>
                 </div>
-                <div type="radio" class="selected hover:border-purple-700 text-sm border-[1px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
+            
+                <div id="plan3" class="plan hover:border-purple-700 text-sm border-[1px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
                     <img src="icon-pro.svg" alt="Pro Plan" class="pb-5">
-                    <div>
+                    <div class="price">
                         <h3 class="font-bold">Pro</h3>
                         <p class="package price text-gray-500">$15/mo</p>
-                        <p class="free text-blue-950 hidden font-[2px]">2 months free</p>
+                        <p class="free text-blue-950 hidden">2 months free</p>
                     </div>
                 </div>
             </div>
+            
+            
         
             <div class="flex justify-center gap-x-5 mt-10">
                 <div class="toggle-label-text">Monthly</div>
@@ -188,9 +192,9 @@
             <h1 class="font-bold text-2xl items-start">Finishing up</h1>
             <p class="text-sm text-gray-500">Double-check everything looks OK before confirming</p>
             <div class="mt-10  bg-gray-100 flex flex-col gap-y-1 text-center items w-full pr-5">
-                <div class=" flex border-b-2 pl-7 pt-3 pb-3 gap-x-60 justify-between items-center text-start font-bold bg-gray-100">
+                <div id="last" class="flex border-b-2 pl-7 pt-3 pb-3 gap-x-60 justify-between items-center text-start font-bold bg-gray-100">
                     <div >
-                        <p class="text-sm"> Arcade (Monthly)</p>
+                        <p class="text-sm" id="final"> Arcade (Monthly)</p>
                         <button class="font-normal text-sm  text-blue-700 cursor-pointer border-b-2 border-blue-500">Change</button>
                     </div>
                     <p class="text-sm">$9/mo</p>
