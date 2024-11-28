@@ -8,40 +8,41 @@
     <script src="multiform.js"></script>
 </head>
 <body class="h-screen w-screen flex bg-[hsl(206,94%,87%)] justify-center items-center"> 
-    <div class="flex md:flex-row md:h-fit flex-col lg:flex-row p-4 text-center text-xl bg-white rounded-xl m-20 gap-2"> 
+    <div class="flex md:flex-row sm:h-fit flex-col sm:w-full md:w-fit lg:flex-row md:p-4 text-center text-xl bg-white rounded-xl m-20  gap-2 sm:p-0"> 
         <div class="relative">
             <img src="bg-sidebar-desktop.svg" alt="Sidebar Desktop" class="hidden md:block w-full">
-            <img src="bg-sidebar-mobile.svg" alt="Sidebar Mobile" class="md:hidden w-[100%]">
-            <div class="flex md:flex-col absolute z-3 top-0 text-white text-start p-7 gap-y-5 w-[130%] sm:w-[100%] md:w-[100%] md:z-0 sm:z-0 md:justify-center sm:justify-center">
+            <img src="bg-sidebar-mobile.svg" alt="Sidebar Mobile" class="md:hidden w-full sm:z-0">
+
+            <div class="flex md:flex-col absolute z-3 top-0 text-white text-start p-7 gap-y-5 w-[130%] sm:w-[100%] sm:z-0 md:justify-center sm:justify-center">
                 <div class="flex items-center gap-x-5">
                     <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)] bg-[hsl(206,94%,87%)] text-blue-950">1</div>
                     <div class="flex-column">
-                        <p class="text-sm hidden md:block">STEP 1</p>
-                        <h3 class="font-bold text-base hidden md:block">YOUR INFO</h3>
+                        <p class="text-sm md:block sm:hidden">STEP 1</p>
+                        <h3 class="font-bold text-base md:block sm:hidden">YOUR INFO</h3>
                     </div>
                 </div>
                 
                 <div class="flex items-center gap-x-5">
                     <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)]">2</div>
                     <div class="detail">
-                        <p class="text-sm hidden md:block">STEP 2</p>
-                        <h3 class="font-bold text-base hidden md:block">SELECT PLAN</h3>
+                        <p class="text-sm md:block sm:hidden">STEP 2</p>
+                        <h3 class="font-bold text-base md:block sm:hidden">SELECT PLAN</h3>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-x-5">
                     <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)]">3</div>
                     <div class="detail">
-                        <p class="text-sm hidden md:block">STEP 3</p>
-                        <h3 class="font-bold text-base hidden md:block">ADD-ONS</h3>
+                        <p class="text-sm md:block sm:hidden">STEP 3</p>
+                        <h3 class="font-bold text-base md:block  sm:hidden">ADD-ONS</h3>
                     </div>
                 </div>
                 
                 <div class="flex items-center gap-x-5">
                     <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)]">4</div>
                     <div class="detail">
-                        <p class="text-sm hidden md:block">STEP 4</p>
-                        <h3 class="font-bold text-base hidden md:block">SUMMARY</h3>
+                        <p class="text-sm md:block sm:hidden">STEP 4</p>
+                        <h3 class="font-bold text-base md:block sm:hidden">SUMMARY</h3>
                     </div>
                 </div>
             </div>
@@ -54,16 +55,16 @@
 
 
 
-        <div class=" step 1 flex flex-col justify-start items-start pl-7 m-9 text-start ">
+        <div class=" step 1 flex flex-col justify-start items-start pl-7 m-9 text-start md:mt-[0] sm:mt-[-7rem] sm:z-40 sm:bg-white sm:pt-[2rem] sm:rounded-lg">
             <h1 class="font-bold text-2xl">Personal Info</h1>
             <p class="text-sm text-gray-500">Please provide your name, email address, and phone number</p>
             <h3 class="mt-5">Name</h3>
-            <input type="text" id="name" class="border-2 hover:border-purple-700 w-full mr-40 rounded-md p-2" required>
+            <input type="text" id="name" class="border-2 hover:border-purple-700 w-full mr-40 rounded-md p-2 " required>
             <h3 class="mt-5">Email Address</h3>
             <input type="email" id="emailID" class="border-2 hover:border-purple-700 w-full rounded-md p-2" required>
             <h3 class="mt-5">Phone Number</h3>
             <input type="text" id="Phone-number" class="border-2 hover:border-purple-700 w-full rounded-md p-2" required>  
-            <div class="flex justify-between w-[100%] pt-16 mt-11">
+            <div class="flex justify-between w-[100%] pt-16 mt-11 sm:mt-15 sm:pt-14 ">
                 <button class="invisible prev text-gray-600 font-bold text-lg px-4 py-2 rounded-md cursor-pointer" id="prev-step">Go Back</button>
 
                 <button class="next bg-blue-950 text-white px-4 py-2 rounded-md cursor-pointer" id="next-step">Next Step</button>
@@ -77,11 +78,11 @@
 
 
         
-        <div class="step 2 hidden flex-col text-start m-10 ml-16 gap-y-4" id="step-2">
+        <div class="step 2 hidden md:w-full flex-col text-start m-10 ml-16 gap-y-4 sm:m-5 md:mt-[0] sm:flex-col sm:mt-[-7rem] sm:z-40 sm:bg-white sm:pt-7 sm:pl-7 sm:rounded-lg" id="step-2">
             <h1 class="font-bold items-start text-2xl">Select your plan</h1>
             <p class="text-sm text-gray-500">You have the option of monthly or yearly billing</p>
-            <div id="plans" class="flex justify-between gap-2 pt-10">
-                <div id="plan1" class="plan hover:border-purple-700 text-sm border-[2px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
+            <div id="plans" class="flex justify-between gap-2 pt-10 sm:pt-3 sm:flex-col sm:w-full">
+                <div id="plan1" class="plan items-start hover:border-purple-700 text-sm sm:flex-row sm:items-center sm:gap-x-5  sm:w-auto sm:h-fit sm:p-4 cursor-pointer border-[2px] border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg  pl-3 lg:justify-evenly">
                     <img src="icon-arcade.svg" alt="Arcade Plan" class="pb-5">
                     <div class="price">
                         <h3 class="name font-bold">Arcade</h3>
@@ -90,7 +91,7 @@
                     </div>
                 </div>
             
-                <div id="plan2" class="plan hover:border-purple-700 text-sm border-[2px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
+                <div id="plan2" class="plan items-start hover:border-purple-700 text-sm sm:flex-row sm:items-center sm:w-auto sm:h-fit sm:p-4 sm:gap-x-5 cursor-pointer border-[2px]  border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg  pl-3 lg:justify-evenly">
                     <img src="icon-advanced.svg" alt="Advanced Plan" class="pb-5">
                     <div class="price">
                         <h3 class="name font-bold">Advanced</h3>
@@ -99,7 +100,7 @@
                     </div>
                 </div>
             
-                <div id="plan3" class="plan hover:border-purple-700 text-sm border-[2px] cursor-pointer border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg items-start pl-3 justify-evenly">
+                <div id="plan3" class="plan items-start hover:border-purple-700 text-sm sm:flex-row sm:items-center sm:w-auto sm:h-fit sm:p-4 sm:gap-x-5 cursor-pointer border-[2px]  border-gray-300 flex flex-col h-[170px] w-[140px] rounded-lg  pl-3 lg:justify-evenly">
                     <img src="icon-pro.svg" alt="Pro Plan" class="pb-5">
                     <div class="price">
                         <h3 class="name font-bold">Pro</h3>
@@ -119,7 +120,7 @@
             </div>
         
             <div class="flex-grow"></div>
-            <div class="flex justify-between mt-28">
+            <div class="flex justify-between mt-28 sm:mt-10">
                 <button class="prev text-gray-600 font-bold text-lg px-4 py-2 rounded-md cursor-pointer" id="prev-step">Go Back</button>
                 <button class="next bg-blue-950 text-white px-4 py-2 rounded-md cursor-pointer" id="next-step">Next Step</button>
             </div>
@@ -134,14 +135,14 @@
 
 
 
-        <div class="step 3 hidden flex-col m-6 pl-6  text-start">
+        <div class="step 3 hidden flex-col m-6 pl-6  text-start sm:m-5 sm:flex-col md:mt-[0] sm:mt-[-7rem] sm:z-40 sm:bg-white sm:pt-7 sm:pl-7 sm:rounded-lg">
             <h1 class="font-bold items-start text-2xl">Pick add-ons</h1>
             <p class="text-sm text-gray-500">Add-ons help enhance your gaming experience</p>
             <div class="flex flex-col gap-y-2">
-                <div class="flex gap-x-5 justify-between text-start mt-7 pr-8 w-100 hover:border-purple-700 border-[2px] p-3 rounded-md">
+                <div class="flex gap-x-5 sm:gap-x-3 justify-between text-start mt-7 pr-8 w-100 hover:border-purple-700 border-[2px] p-3 rounded-md">
                     <div class="flex justify-around">
                         <input type="checkbox">
-                        <div class="pl-10">
+                        <div class="pl-10 sm:pl-4">
                             <h3 class="text-start font-bold text-[85%]">Online service</h3>
                             <p class="text-sm text-gray-500">Access to multiplayer games</p>
                         </div>
@@ -149,20 +150,20 @@
                     <p class=" flex text-blue-700 text-base items-center">+$1/mo</p>
                 </div>
 
-                <div class="flex gap-x-5 justify-between text-start pr-7 w-100 hover:border-purple-700 border-[2px] p-3 rounded-md">
-                    <div class="flex justify-around">
+                <div class="flex gap-x-5 sm:gap-x-3 justify-between text-start pr-7 w-100 hover:border-purple-700 border-[2px] p-3 rounded-md">
+                    <div class="flex justify-around sm:justify-evenly">
                         <input type="checkbox">
-                        <div class="pl-10">
+                        <div class="pl-10 sm:pl-4">
                             <h3 class="text-start font-bold text-[85%]">Large storage</h3>
                             <p class="text-sm text-gray-500">Extra 1TB of cloud save</p>
                         </div>
                     </div>
                     <p class=" flex text-blue-700 text-base items-center">+$2/mo</p>
                 </div>
-                <div class="flex gap-x-32 justify-between text-start pr-7 w-100 hover:border-purple-700 border-[2px] p-3 rounded-md">
+                <div class="flex gap-x-5 sm:gap-x-3 justify-between text-start pr-7 w-100 hover:border-purple-700 border-[2px] p-3 rounded-md">
                     <div class="flex justify-around ">
                         <input type="checkbox">
-                        <div class="pl-10">
+                        <div class="pl-10 sm:pl-4">
                             <h3 class="text-start font-bold text-[85%]">Customizable Profile</h3>
                             <p class="text-sm text-gray-500 w-48">Custom theme on your profile</p>
                         </div>
@@ -186,7 +187,7 @@
 
 
 
-        <div class="step 4 hidden flex-col text-start gap-y-2 m-3 pl-12 pr-7 ">
+        <div class="step 4 hidden flex-col text-start gap-y-2 m-3 pl-12 pr-7 sm:m-5 sm:flex-col md:mt-[0] sm:mt-[-7rem] sm:z-40 sm:bg-white sm:pt-7 sm:pl-7 sm:rounded-lg">
             <h1 class="font-bold text-2xl items-start">Finishing up</h1>
             <p class="text-sm text-gray-500">Double-check everything looks OK before confirming</p>
             <div class="mt-10  bg-gray-100 flex flex-col gap-y-1 text-center items w-full pr-5">
@@ -213,7 +214,7 @@
                 </div>
         
             </div>
-            <div class="flex  justify-between mt-32">
+            <div class="flex  justify-between mt-32 ">
                 <button class="prev text-gray-500 font-bold text-lg cursor-pointer">Go Back</button>
                 <button class="next px-5 py-2 bg-blue-950 rounded text-white text-m">Confirm</button>
             </div>
@@ -223,9 +224,9 @@
 
 <!-- step-5 -->
 
-    <div class="step 5 hidden flex flex-col justify-center items-center w-[27.5vw] text-center gap-y-[1.7rem] mx-[1rem]">
+    <div class="step 5 hidden flex flex-col justify-center items-center w-[27.5vw] text-center gap-y-[1.7rem] mx-[1rem] md:mt-[0] sm:mx-0 sm:w-full sm:m-5 sm:flex-col sm:mt-[-7rem] sm:z-40 sm:bg-white sm:pt-7 sm:pl-7 sm:rounded-lg">
         <img src="icon-thank-you.svg" alt="Thank You Icon" class=""> 
-        <div class="flex flex-col gap-y-4">
+        <div class="flex flex-col gap-y-4 sm:w-full">
             <h1 class="text-2xl font-bold">Thank you!</h1> 
             <p class="text-base text-gray-500 w-full">
                 Thanks for confirming your subscription! We hope you have <br> 

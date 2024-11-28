@@ -51,15 +51,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     plans.forEach((plan) => {
         plan.addEventListener("click", () => {
+
             const planName = plan.querySelector("h3").innerText;
             const planPriceText = plan.querySelector(".package").innerText;
             const planPrice = parseInt(planPriceText.replace(/[^0-9]/g, ""));
+            // plan.style.border='purple'
             selectedPlan = {
                 name: planName,
                 price: planPrice,
                 interval: toggleSwitch.checked ? "Yearly" : "Monthly",
                 frequency: toggleSwitch.checked ? "yr" : "mo",
-                addOns: [] // Reset add-ons whenever the plan is changed
+                addOns: [] 
             };
             updateFinalStep();
         });
