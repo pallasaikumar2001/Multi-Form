@@ -1,102 +1,135 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const steps = document.querySelectorAll('.step');
-    const nums = document.querySelectorAll('.number');
-    let currentStep = 0;
+    let step = 1;
+    const steps = document.querySelectorAll(".step");
+    const nums = document.querySelectorAll(".number");
+    const nextButtons = document.querySelectorAll(".next");
+    const prevButtons = document.querySelectorAll(".prev");
+    const toggleSwitch = document.getElementById("toggle");
+    const plans = document.querySelectorAll(".plan");
+    const addOns = document.querySelectorAll(".step-3 input[type='checkbox']");
+    const finalPlanText = document.getElementById("final");
+    const totalAmountText = document.querySelector(".text-blue-700.font-bold.text-xl");
+    const confirmButton = document.querySelector(".step-4 button.px-5");
+    const togBall = document.getElementById("togBall");
 
-    const updateStepDisplay = () => {
-        steps.forEach((step, index) => {
-            step.style.display = index === currentStep ? 'block' : 'none';
-            nums[index].style.backgroundColor = index === currentStep ? 'hsl(206,94%,87%)' : 'transparent';
-            nums[index].style.color = index === currentStep ? 'black' : 'hsl(206,94%,87%)';
-        });
+    let selectedPlan = {
+        name: "Arcade",
+        price: 9,
+        interval: "Monthly",
+        frequency: "mo",
+        addOns: []
     };
+    let totalAddOns = 0;
 
-    updateStepDisplay();
+    function updateStepDisplay() {
+        steps.forEach((stepDiv, index) => {
+            stepDiv.classList.toggle("hidden", index + 1 !== step);
+            if (nums[index]) {
+                nums[index].style.backgroundColor = index + 1 === step ? "hsl(206,94%,87%)" : "transparent";
+                nums[index].style.color = index + 1 === step ? "black" : "hsl(206,94%,87%)";
+            }
+        });
+    }
 
-    // Navigation Buttons
-    document.querySelectorAll('.next').forEach(button => {
-        button.addEventListener('click', () => {
-            if (currentStep < steps.length - 1) {
-                currentStep++;
+    nextButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            if (step < 5) {
+                step++;
                 updateStepDisplay();
             }
         });
     });
 
-    document.querySelectorAll('.prev').forEach(button => {
-        button.addEventListener('click', () => {
-            if (currentStep > 0) {
-                currentStep--;
+    prevButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            if (step > 1) {
+                step--;
                 updateStepDisplay();
             }
         });
     });
 
-    // Plan Selection
-    const plans = document.querySelectorAll('.plan');
-    let selectedPlan = { name: 'Arcade', price: 9, frequency: 'mo' };
-
-    plans.forEach(plan => {
-        plan.addEventListener('click', () => {
-            plans.forEach(p => p.classList.remove('selected'));
-            plan.classList.add('selected');
-            const planName = plan.querySelector('h3').textContent;
-            const planPrice = parseInt(plan.querySelector('.package').textContent.replace(/[^0-9]/g, ''));
-            selectedPlan = { name: planName, price: planPrice, frequency: 'mo' };
-            updateSummary();
+    plans.forEach((plan) => {
+        plan.addEventListener("click", () => {
+            const planName = plan.querySelector("h3").innerText;
+            const planPriceText = plan.querySelector(".package").innerText;
+            const planPrice = parseInt(planPriceText.replace(/[^0-9]/g, ""));
+            selectedPlan = {
+                name: planName,
+                price: planPrice,
+                interval: toggleSwitch.checked ? "Yearly" : "Monthly",
+                frequency: toggleSwitch.checked ? "yr" : "mo",
+                addOns: [] // Reset add-ons whenever the plan is changed
+            };
+            updateFinalStep();
         });
     });
 
-    // Toggle Switch for Monthly/Yearly
-    const toggle = document.getElementById('toggle');
-    const togBall = document.getElementById('togBall');
-    toggle.addEventListener('click', () => {
-        const isYearly = toggle.checked;
-        togBall.style.transform = isYearly ? 'translateX(32px)' : 'translateX(4px)';
-        selectedPlan.frequency = isYearly ? 'yr' : 'mo';
+    toggleSwitch.addEventListener("change", () => {
+        const isYearly = toggleSwitch.checked;
+        togBall.style.transform = isYearly ? "translateX(32px)" : "translateX(4px)";
 
-        plans.forEach(plan => {
-            const basePrice = parseInt(plan.querySelector('.package').textContent.replace(/[^0-9]/g, ''));
-            const yearlyPrice = basePrice * 10;
-            plan.querySelector('.package').textContent = isYearly ? `$${yearlyPrice}/yr` : `$${basePrice}/mo`;
-            plan.querySelector('.free').classList.toggle('hidden', !isYearly);
+        plans.forEach((plan) => {
+            const packageText = plan.querySelector(".package");
+            const freeText = plan.querySelector(".free");
+            const basePrice = parseInt(packageText.innerText.replace(/[^0-9]/g, ""));
+
+            if (isYearly) {
+                packageText.innerText = `$${basePrice * 10}/yr`;
+                freeText.classList.remove("hidden");
+                selectedPlan.interval = "Yearly";
+                selectedPlan.frequency = "yr";
+            } else {
+                packageText.innerText = `$${basePrice / 10}/mo`;
+                freeText.classList.add("hidden");
+                selectedPlan.interval = "Monthly";
+                selectedPlan.frequency = "mo";
+            }
         });
-
-        updateSummary();
+        updateFinalStep();
     });
 
-    // Add-on Selection
-    const addonCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-    const addOnPrices = document.querySelectorAll('.addon-price');
-    const addOns = [];
+    addOns.forEach((checkbox, index) => {
+        checkbox.addEventListener("change", () => {
+            const addOnPrice = parseInt(
+                checkbox.closest(".flex").querySelector("p.text-blue-700").innerText.replace(/[^0-9]/g, "")
+            );
+            totalAddOns += checkbox.checked ? addOnPrice : -addOnPrice;
 
-    addonCheckboxes.forEach((checkbox, index) => {
-        checkbox.addEventListener('change', () => {
-            const addonPriceText = addOnPrices[index]?.textContent || '+$0/mo';
-            const addonPrice = parseInt(addonPriceText.replace(/[^0-9]/g, ''));
+            const addonPriceText = checkbox.closest(".flex").querySelector(".addon-price").textContent || "+$0/mo";
+            const addonPrice = parseInt(addonPriceText.replace(/[^0-9]/g, ""));
 
             if (checkbox.checked) {
-                addOns.push({ index, price: addonPrice });
+                selectedPlan.addOns.push({ price: addonPrice });
             } else {
-                const addonIndex = addOns.findIndex(a => a.index === index);
-                if (addonIndex !== -1) addOns.splice(addonIndex, 1);
+                const addonIndex = selectedPlan.addOns.findIndex((a) => a.price === addonPrice);
+                if (addonIndex !== -1) selectedPlan.addOns.splice(addonIndex, 1);
             }
 
-            updateSummary();
+            updateFinalStep();
         });
     });
 
-    // Update Summary Section
-    const updateSummary = () => {
-        const summaryPlan = document.getElementById('final');
-        const totalPriceEl = document.querySelector('.text-blue-700.font-bold');
+    function updateFinalStep() {
+        const planText = `${selectedPlan.name} (${selectedPlan.interval})`;
+        const planPriceText = `$${selectedPlan.price}${selectedPlan.interval === "Monthly" ? "/mo" : "/yr"}`;
+        let totalAmount;
+        if (selectedPlan.interval === "Monthly") {
+            totalAmount = selectedPlan.price + totalAddOns;
+        } else {
+            totalAmount = selectedPlan.price + totalAddOns * 10;
+        }
 
-        summaryPlan.textContent = `${selectedPlan.name} (${selectedPlan.frequency === 'mo' ? 'Monthly' : 'Yearly'})`;
-        const addOnTotal = addOns.reduce((acc, curr) => acc + curr.price, 0);
-        const totalPrice = selectedPlan.frequency === 'mo'
-            ? selectedPlan.price + addOnTotal
-            : selectedPlan.price * 10 + addOnTotal * 10;
+        if (finalPlanText) finalPlanText.innerText = planText;
+        const planPriceElement = document.querySelector("#last p:last-child");
+        if (planPriceElement) planPriceElement.innerText = planPriceText;
+        if (totalAmountText) totalAmountText.innerText = `+$${totalAmount}${selectedPlan.frequency}`;
+    }
 
-        totalPriceEl.textContent = `$${totalPrice}/${selectedPlan.frequency}`;
-    };
+    confirmButton.addEventListener("click", () => {
+        step = 5;
+        updateStepDisplay();
+    });
+
+    updateStepDisplay();
 });

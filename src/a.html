@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Multi Form</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="index.js"></script>
+</head>
+<body class="h-screen w-screen flex bg-[hsl(206,94%,87%)] justify-center items-center"> 
+    <div class="flex md:flex-row md:h-fit flex-col lg:flex-row p-4 text-center text-xl bg-white rounded-xl m-20 gap-2"> 
+        <div class="relative">
+            <img src="bg-sidebar-desktop.svg" alt="Sidebar Desktop" class="hidden md:block w-full">
+            <img src="bg-sidebar-mobile.svg" alt="Sidebar Mobile" class="md:hidden w-[100%]">
+            <div class="flex md:flex-col absolute z-3 top-0 text-white text-start p-7 gap-y-5 w-[130%] sm:w-[100%] md:w-[100%] md:z-0 sm:z-0 md:justify-center sm:justify-center">
+                <div class="flex items-center gap-x-5">
+                    <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)]">1</div>
+                    <div class="flex-column">
+                        <p class="text-sm hidden md:block">STEP 1</p>
+                        <h3 class="font-bold text-base hidden md:block">YOUR INFO</h3>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-x-5">
+                    <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)]">2</div>
+                    <div class="detail">
+                        <p class="text-sm hidden md:block">STEP 2</p>
+                        <h3 class="font-bold text-base hidden md:block">SELECT PLAN</h3>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-x-5">
+                    <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)]">3</div>
+                    <div class="detail">
+                        <p class="text-sm hidden md:block">STEP 3</p>
+                        <h3 class="font-bold text-base hidden md:block">ADD-ONS</h3>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-x-5">
+                    <div class="number flex h-10 w-10 rounded-3xl justify-center items-center border-[1px] border-[hsl(206,94%,87%)]">4</div>
+                    <div class="detail">
+                        <p class="text-sm hidden md:block">STEP 4</p>
+                        <h3 class="font-bold text-base hidden md:block">SUMMARY</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step hidden md:flex flex-col justify-center items-center text-center gap-y-2 m-3 pl-12 pr-7">
+            <img src="icon-thank-you.svg" alt="">
+            <h1>Thank you!</h1>
+            <p>Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com</p>
+        </div>
+    </div>
+</body>
+</html>
