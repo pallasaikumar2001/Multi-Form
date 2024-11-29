@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalAmountText = document.querySelector(".text-blue-700.font-bold.text-xl");
     const confirmButton = document.querySelector("#confirmbutton");
     const togBall = document.getElementById("togBall");
+    const step4AddonsContainer = document.getElementById("step4-addons");
 
-    // Selected plan details
     let selectedPlan = {
         name: "Arcade",
         price: 9,
@@ -22,14 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
         addOns: [],
     };
 
-    // Base prices for plans
     const planBasePrices = {
         Arcade: 9,
         Advanced: 12,
         Pro: 15,
     };
 
-    // Prices for add-ons
     const addOnPrices = {
         onlineService: { monthly: 1, yearly: 10 },
         largeStorage: { monthly: 2, yearly: 20 },
@@ -68,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Update add-on prices
         addonsPrices.forEach((priceElement, index) => {
             const addOnKey = Object.keys(addOnPrices)[index];
             const price = addOnPrices[addOnKey][isYearly ? "yearly" : "monthly"];
@@ -96,7 +93,35 @@ document.addEventListener("DOMContentLoaded", function () {
         const planPriceElement = document.querySelector("#last p:last-child");
         if (planPriceElement) planPriceElement.innerText = planPriceText;
         if (totalAmountText) totalAmountText.innerText = `+$${totalAmount}/${selectedPlan.frequency}`;
+
+        updateStep4AddOns();
     }
+
+    // Update Step 4 Add-Ons Display
+    function updateStep4AddOns() {
+        if (!step4AddonsContainer) {
+            console.error("Step 4 Add-ons container not found!");
+            return;
+        }
+    
+        step4AddonsContainer.innerHTML = "";
+
+        if (selectedPlan.addOns.length === 0) {
+            step4AddonsContainer.style.display = "none";
+        } else {
+            step4AddonsContainer.style.display = "block";
+            selectedPlan.addOns.forEach((addOn) => {
+                const addOnElement = document.createElement("div");
+                addOnElement.classList.add("addon-item", "text-gray-500", "flex", "pl-7", "items-center", "justify-between", "h-3");
+                addOnElement.innerHTML = `
+                    <p class="text-sm">${addOn.name}</p>
+                    <p class="text-sm">+$${addOn.price}/${selectedPlan.frequency}</p>
+                `;
+                step4AddonsContainer.appendChild(addOnElement);
+            });
+        }
+    }
+    
 
     // Add event listeners to plans
     plans.forEach((plan) => {
@@ -113,7 +138,6 @@ document.addEventListener("DOMContentLoaded", function () {
         checkbox.addEventListener("change", () => {
             const addOnKey = Object.keys(addOnPrices)[index];
             const price = addOnPrices[addOnKey][selectedPlan.frequency === "mo" ? "monthly" : "yearly"];
-
             if (checkbox.checked) {
                 selectedPlan.addOns.push({ name: addOnKey, price });
             } else {
@@ -150,13 +174,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Confirm button to move to step 5
     confirmButton.addEventListener("click", () => {
         step = 5;
         updateStepDisplay();
     });
 
-    // Initialize display
     updateStepDisplay();
     updatePlanAndAddOnPrices();
 });
