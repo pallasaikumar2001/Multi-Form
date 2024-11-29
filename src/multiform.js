@@ -6,21 +6,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevButtons = document.querySelectorAll(".prev");
     const toggleSwitch = document.getElementById("toggle");
     const plans = document.querySelectorAll(".plan");
-    const addOns = document.querySelectorAll(".step-3 input[type='checkbox']");
+    const addOnCheckboxes = document.querySelectorAll(".step-3 input[type='checkbox']");
+    const addonsPrices = document.querySelectorAll(".addoncost");
     const finalPlanText = document.getElementById("final");
     const totalAmountText = document.querySelector(".text-blue-700.font-bold.text-xl");
-    const confirmButton = document.querySelector(".step-4 button.px-5");
+    const confirmButton = document.querySelector("#confirmbutton");
     const togBall = document.getElementById("togBall");
 
+    // Selected plan details
     let selectedPlan = {
         name: "Arcade",
         price: 9,
         interval: "Monthly",
         frequency: "mo",
-        addOns: []
+        addOns: [],
     };
-    let totalAddOns = 0;
 
+    // Base prices for plans
+    const planBasePrices = {
+        Arcade: 9,
+        Advanced: 12,
+        Pro: 15,
+    };
+
+    // Prices for add-ons
+    const addOnPrices = {
+        onlineService: { monthly: 1, yearly: 10 },
+        largeStorage: { monthly: 2, yearly: 20 },
+        customProfile: { monthly: 2, yearly: 20 },
+    };
+
+    // Update step display
     function updateStepDisplay() {
         steps.forEach((stepDiv, index) => {
             stepDiv.classList.toggle("hidden", index + 1 !== step);
@@ -31,6 +47,91 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Update plan prices and add-ons based on toggle
+    function updatePlanAndAddOnPrices() {
+        const isYearly = toggleSwitch.checked;
+        selectedPlan.interval = isYearly ? "Yearly" : "Monthly";
+        selectedPlan.frequency = isYearly ? "yr" : "mo";
+
+        // Update plan prices
+        plans.forEach((plan) => {
+            const packageText = plan.querySelector(".package");
+            const freeText = plan.querySelector(".free");
+            const basePrice = planBasePrices[plan.querySelector("h3").innerText];
+
+            if (isYearly) {
+                packageText.innerText = `$${basePrice * 10}/yr`;
+                freeText.classList.remove("hidden");
+            } else {
+                packageText.innerText = `$${basePrice}/mo`;
+                freeText.classList.add("hidden");
+            }
+        });
+
+        // Update add-on prices
+        addonsPrices.forEach((priceElement, index) => {
+            const addOnKey = Object.keys(addOnPrices)[index];
+            const price = addOnPrices[addOnKey][isYearly ? "yearly" : "monthly"];
+            priceElement.textContent = `+$${price}/${isYearly ? "yr" : "mo"}`;
+        });
+
+        updateFinalStep();
+    }
+
+    // Update the final step summary
+    function updateFinalStep() {
+        const planText = `${selectedPlan.name} (${selectedPlan.interval})`;
+        const planPrice = selectedPlan.interval === "Yearly" ? selectedPlan.price * 10 : selectedPlan.price;
+        const planPriceText = `$${planPrice}/${selectedPlan.frequency}`;
+        let totalAddOnPrice = 0;
+
+        // Calculate total add-on price
+        selectedPlan.addOns.forEach((addOn) => {
+            totalAddOnPrice += addOn.price;
+        });
+
+        const totalAmount = planPrice + totalAddOnPrice;
+
+        if (finalPlanText) finalPlanText.innerText = planText;
+        const planPriceElement = document.querySelector("#last p:last-child");
+        if (planPriceElement) planPriceElement.innerText = planPriceText;
+        if (totalAmountText) totalAmountText.innerText = `+$${totalAmount}/${selectedPlan.frequency}`;
+    }
+
+    // Add event listeners to plans
+    plans.forEach((plan) => {
+        plan.addEventListener("click", () => {
+            const planName = plan.querySelector("h3").innerText;
+            selectedPlan.name = planName;
+            selectedPlan.price = planBasePrices[planName];
+            updateFinalStep();
+        });
+    });
+
+    // Add event listeners to add-ons
+    addOnCheckboxes.forEach((checkbox, index) => {
+        checkbox.addEventListener("change", () => {
+            const addOnKey = Object.keys(addOnPrices)[index];
+            const price = addOnPrices[addOnKey][selectedPlan.frequency === "mo" ? "monthly" : "yearly"];
+
+            if (checkbox.checked) {
+                selectedPlan.addOns.push({ name: addOnKey, price });
+            } else {
+                selectedPlan.addOns = selectedPlan.addOns.filter((addOn) => addOn.name !== addOnKey);
+            }
+
+            updateFinalStep();
+        });
+    });
+
+    // Toggle switch for monthly/yearly pricing
+    toggleSwitch.addEventListener("change", () => {
+        const isYearly = toggleSwitch.checked;
+        togBall.style.transform = isYearly ? "translateX(32px)" : "translateX(4px)";
+        updatePlanAndAddOnPrices();
+    });
+
+    // Navigation for next/previous steps
     nextButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
             if (step < 5) {
@@ -49,89 +150,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    plans.forEach((plan) => {
-        plan.addEventListener("click", () => {
-
-            const planName = plan.querySelector("h3").innerText;
-            const planPriceText = plan.querySelector(".package").innerText;
-            const planPrice = parseInt(planPriceText.replace(/[^0-9]/g, ""));
-            // plan.style.border='purple'
-            selectedPlan = {
-                name: planName,
-                price: planPrice,
-                interval: toggleSwitch.checked ? "Yearly" : "Monthly",
-                frequency: toggleSwitch.checked ? "yr" : "mo",
-                addOns: [] 
-            };
-            updateFinalStep();
-        });
-    });
-
-    toggleSwitch.addEventListener("change", () => {
-        const isYearly = toggleSwitch.checked;
-        togBall.style.transform = isYearly ? "translateX(32px)" : "translateX(4px)";
-
-        plans.forEach((plan) => {
-            const packageText = plan.querySelector(".package");
-            const freeText = plan.querySelector(".free");
-            const basePrice = parseInt(packageText.innerText.replace(/[^0-9]/g, ""));
-
-            if (isYearly) {
-                packageText.innerText = `$${basePrice * 10}/yr`;
-                freeText.classList.remove("hidden");
-                selectedPlan.interval = "Yearly";
-                selectedPlan.frequency = "yr";
-            } else {
-                packageText.innerText = `$${basePrice / 10}/mo`;
-                freeText.classList.add("hidden");
-                selectedPlan.interval = "Monthly";
-                selectedPlan.frequency = "mo";
-            }
-        });
-        updateFinalStep();
-    });
-
-    addOns.forEach((checkbox, index) => {
-        checkbox.addEventListener("change", () => {
-            const addOnPrice = parseInt(
-                checkbox.closest(".flex").querySelector("p.text-blue-700").innerText.replace(/[^0-9]/g, "")
-            );
-            totalAddOns += checkbox.checked ? addOnPrice : -addOnPrice;
-
-            const addonPriceText = checkbox.closest(".flex").querySelector(".addon-price").textContent || "+$0/mo";
-            const addonPrice = parseInt(addonPriceText.replace(/[^0-9]/g, ""));
-
-            if (checkbox.checked) {
-                selectedPlan.addOns.push({ price: addonPrice });
-            } else {
-                const addonIndex = selectedPlan.addOns.findIndex((a) => a.price === addonPrice);
-                if (addonIndex !== -1) selectedPlan.addOns.splice(addonIndex, 1);
-            }
-
-            updateFinalStep();
-        });
-    });
-
-    function updateFinalStep() {
-        const planText = `${selectedPlan.name} (${selectedPlan.interval})`;
-        const planPriceText = `$${selectedPlan.price}${selectedPlan.interval === "Monthly" ? "/mo" : "/yr"}`;
-        let totalAmount;
-        if (selectedPlan.interval === "Monthly") {
-            totalAmount = selectedPlan.price + totalAddOns;
-        } else {
-            totalAmount = selectedPlan.price + totalAddOns * 10;
-        }
-
-        if (finalPlanText) finalPlanText.innerText = planText;
-        const planPriceElement = document.querySelector("#last p:last-child");
-        if (planPriceElement) planPriceElement.innerText = planPriceText;
-        if (totalAmountText) totalAmountText.innerText = `+$${totalAmount}${selectedPlan.frequency}`;
-    }
-
+    // Confirm button to move to step 5
     confirmButton.addEventListener("click", () => {
         step = 5;
         updateStepDisplay();
     });
 
+    // Initialize display
     updateStepDisplay();
+    updatePlanAndAddOnPrices();
 });
