@@ -68,11 +68,11 @@
             <h1 class="font-bold text-2xl">Personal Info</h1>
             <p class="text-sm text-gray-500">Please provide your name, email address, and phone number</p>
             <h3 class="mt-5">Name</h3>
-            <input type="text" id="name" class="border-2 hover:border-purple-700 w-full mr-40 rounded-md p-2 " required>
+            <input type="text" id="name" class="border-2 hover:border-purple-700 w-[90%] md:w-full mr-40 rounded-md p-2 " required>
             <h3 class="mt-5">Email Address</h3>
-            <input type="email" id="emailID" class="border-2 hover:border-purple-700 w-full rounded-md p-2" required>
+            <input type="email" id="emailID" class="border-2 hover:border-purple-700 w-[90%] md:w-full rounded-md p-2" required>
             <h3 class="mt-5">Phone Number</h3>
-            <input type="text" id="Phone-number" class="border-2 hover:border-purple-700 w-full rounded-md p-2" required>  
+            <input type="text" id="Phone-number" class="border-2 hover:border-purple-700 w-[90%] md:w-full rounded-md p-2" required>  
             <div class="flex justify-between w-[100%] mt-[4rem] mb-7 md:mb-0 sm:mt-15 sm:pt-14 ">
                 <button class="invisible prev text-gray-500 font-bold text-lg px-4 py-2 rounded-md cursor-pointer" id="prev-step">Go Back</button>
 
@@ -87,11 +87,11 @@
 
 
         
-        <div class="step 2 mt-[-20%] md:mt-0 m-[1rem] bg-white flex-col hidden md:w-fit md:ml-[2.7rem] md:mr-[3.8rem] text-start my-5 gap-y-4  md:flex-row z-40 pt-7 px-7 md:px-0 rounded-lg" id="step-2">
+        <div class="step 2 mt-[-20%] md:mt-0 m-[1rem] bg-white flex-col hidden md:w-fit md:ml-[2.7rem] md:mr-[3.8rem] text-start my-5 gap-y-4  md:flex-row z-40 pt-7 px-[6rem] md:px-0 rounded-lg" id="step-2">
             <h1 class="font-bold items-start text-2xl">Select your plan</h1>
             <p class="text-sm text-gray-500">You have the option of monthly or yearly billing</p>
             <div id="plans" class="flex justify-between gap-4 pt-3 md:flex-row md:px-[2rem] flex-col md:w-[150%] md:pr-[3rem] w-full md:justify-start">
-                <div id="plan1" class="plan items-start hover:border-purple-700 relative text-sm md:flex-col md:w-[7rem] sm:items-center md:items-start gap-x-5 md:gap-x-0 md:p0 cursor-pointer border-[2px] border-gray-300 flex rounded-lg  pl-3 lg:justify-evenly">
+                <div id="plan1" class="plan items-start hover:border-purple-700 relative text-sm flex-row md:flex-col md:w-[7rem] sm:items-center md:items-start gap-x-5 md:gap-x-0 md:p0 cursor-pointer border-[2px] border-gray-300 flex rounded-lg  pl-3 lg:justify-evenly">
                     <img src="icon-arcade.svg" alt="Arcade Plan" class="pb-5">
                     <div class="price">
                         <h3 class="name font-bold">Arcade</h3>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             
-                <div id="plan2" class="plan items-start hover:border-purple-700 relative text-sm flex-row md:flex-col md:w-[7rem] md:items-start sm:items-center sm:w-auto sm:h-fit sm:p-4 sm:gap-x-5 cursor-pointer border-[2px]  border-gray-300 flex  rounded-lg  pl-3 lg:justify-evenly">
+                <div id="plan2" class="plan items-start hover:border-purple-700 relative text-sm flex-row md:flex-col md:w-[7rem] md:items-start sm:items-center sm:w-auto sm:h-fit sm:p-4  cursor-pointer border-[2px]  border-gray-300 flex  rounded-lg  pl-3 lg:justify-evenly">
                     <img src="icon-advanced.svg" alt="Advanced Plan" class="pb-5">
                     <div class="price">
                         <h3 class="name font-bold">Advanced</h3>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             
-                <div id="plan3" class="plan items-start hover:border-purple-700 relative md:mr-[25%] text-sm flex-row md:flex-col md:w-[7rem] md:items-start sm:items-center sm:w-auto sm:h-fit sm:p-4 sm:gap-x-5 cursor-pointer border-[2px]  border-gray-300 flex rounded-lg  pl-3 lg:justify-evenly">
+                <div id="plan3" class="plan items-start hover:border-purple-700 relative md:mr-[25%] text-sm flex-row md:flex-col md:w-[7rem] md:items-start sm:items-center sm:w-auto sm:h-fit sm:p-4  cursor-pointer border-[2px]  border-gray-300 flex rounded-lg  pl-3 lg:justify-evenly">
                     <img src="icon-pro.svg" alt="Pro Plan" class="pb-5">
                     <div class="price">
                         <h3 class="name font-bold">Pro</h3>
@@ -143,7 +143,7 @@
 
 
 
-        <div class="step 3 step-3 mt-[-20%] relative hidden flex-col m-6 px-[10rem] md:px-0  text-start md:pl-[3rem] md:mt-[0] sm:z-40 bg-white pt-7 md:pr-10 rounded-lg">
+        <div class="step 3 step-3 mt-[-20%] relative hidden flex-col m-6 px-[4rem] md:px-0  text-start md:pl-[3rem] md:mt-[0] sm:z-40 bg-white pt-7 md:pr-10 rounded-lg">
             <h1 class="font-bold items-start text-2xl">Pick add-ons</h1>
             <p class="text-sm text-gray-500">Add-ons help enhance your gaming experience</p>
             <div class="flex flex-col gap-y-2 ">
