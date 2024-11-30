@@ -67,17 +67,19 @@
         <div class=" step 1 mt-[-20%] justify-center md: md:mt-0  relative pr-0 md:pr-[3rem] flex flex-col md:justify-start items-start pl-7 pt-7 ml-5 mr-5 text-start z-4 bg-white rounded-xl">
             <h1 class="font-bold text-2xl">Personal Info</h1>
             <p class="text-sm text-gray-500">Please provide your name, email address, and phone number</p>
-            <h3 class="mt-5">Name</h3>
-            <input type="text" id="name" class="border-2 hover:border-purple-700 w-[90%] md:w-full mr-40 rounded-md p-2 " required>
-            <h3 class="mt-5">Email Address</h3>
-            <input type="email" id="emailID" class="border-2 hover:border-purple-700 w-[90%] md:w-full rounded-md p-2" required>
-            <h3 class="mt-5">Phone Number</h3>
-            <input type="text" id="Phone-number" class="border-2 hover:border-purple-700 w-[90%] md:w-full rounded-md p-2" required>  
-            <div class="flex justify-between w-[100%] mt-[4rem] mb-7 md:mb-0 sm:mt-15 sm:pt-14 ">
-                <button class="invisible prev text-gray-500 font-bold text-lg px-4 py-2 rounded-md cursor-pointer" id="prev-step">Go Back</button>
+            <form action="" id="personal-info-form">
+                <h3 class="mt-5">Name</h3>
+                <input type="text" id="name" class="border-2 hover:border-purple-700 w-[90%] md:w-full mr-40 rounded-md p-2 " required>
+                <h3 class="mt-5">Email Address</h3>
+                <input type="email" id="emailID" class="border-2 hover:border-purple-700 w-[90%] md:w-full rounded-md p-2" required>
+                <h3 class="mt-5">Phone Number</h3>
+                <input type="text" id="Phone-number" class="border-2 hover:border-purple-700 w-[90%] md:w-full rounded-md p-2" required>  
+                <div class="flex justify-between w-[100%] mt-[4rem] mb-7 md:mb-0 sm:mt-15 sm:pt-14 ">
+                    <button class="invisible prev text-gray-500 font-bold text-lg px-4 py-2 rounded-md cursor-pointer" id="prev-step">Go Back</button>
 
-                <button class="next bg-blue-950 text-white px-4 py-2 rounded-md cursor-pointer" id="next-step">Next Step</button>
-            </div>      
+                    <button class="next bg-blue-950 text-white px-4 py-2 rounded-md cursor-pointer" id="next-step" type="submit">Next Step</button>
+                </div>  
+            </form>    
         </div>
          
             

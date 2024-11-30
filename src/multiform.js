@@ -37,6 +37,96 @@ document.addEventListener("DOMContentLoaded", function () {
         customProfile: { monthly: 2, yearly: 20 },
     };
 
+
+    document.getElementById("next-step").addEventListener("click", function (event) {
+        event.preventDefault();
+    
+        clearErrors();
+    
+        const isFormValid = validateForm();
+    });
+    
+    function validateForm() {
+        let isValid = true;
+    
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("emailID");
+        const phoneInput = document.getElementById("Phone-number");
+    
+        if (!validateName(nameInput.value.trim())) {
+            showError(nameInput, "Name is required.");
+            isValid = false;
+        }
+    
+        if (!validateEmail(emailInput.value.trim())) {
+            showError(emailInput, "Please enter a valid email address.");
+            isValid = false;
+        }
+    
+        if (!validatePhoneNumber(phoneInput.value.trim())) {
+            showError(phoneInput, "Please enter a valid 10-digit phone number.");
+            isValid = false;
+        }
+    
+        return isValid;
+    }
+    
+    function validateName(name) {
+        return name !== "";
+    }
+    
+    function validateEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+    
+    function validatePhoneNumber(phoneNumber) {
+        const phonePattern = /^\d{10}$/;
+        return phonePattern.test(phoneNumber);
+    }
+    
+    function showError(input, message) {
+        const errorElement = document.createElement("p");
+        errorElement.className = "text-red-500 text-sm mt-1";
+        errorElement.innerText = message;
+        input.parentNode.appendChild(errorElement);
+        input.classList.add("border-red-500");
+    }
+    
+    function clearErrors() {
+        const errorMessages = document.querySelectorAll(".text-red-500");
+        errorMessages.forEach((error) => error.remove());
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach((input) => input.classList.remove("border-red-500"));
+    }
+    
+    
+    function validateEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+    
+    function validatePhoneNumber(phoneNumber) {
+        const phonePattern = /^\d{10}$/; 
+        return phonePattern.test(phoneNumber);
+    }
+    
+    function showError(input, message) {
+        const errorElement = document.createElement("p");
+        errorElement.className = "text-red-500 text-sm mt-1"; 
+        errorElement.innerText = message;
+        input.parentNode.appendChild(errorElement);
+        input.classList.add("border-red-500"); 
+    }
+    
+    function clearErrors() {
+        const errorMessages = document.querySelectorAll(".text-red-500");
+        errorMessages.forEach((error) => error.remove());
+        const inputs = document.querySelectorAll("input");
+        inputs.forEach((input) => input.classList.remove("border-red-500"));
+    }
+    
+
     // Update step display
     function updateStepDisplay() {
         steps.forEach((stepDiv, index) => {
@@ -158,7 +248,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Navigation for next/previous steps
     nextButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-            if (step < 5) {
+            if (step==1){
+                if (validateForm()){
+                    step++
+                    updateStepDisplay()
+                }
+            }
+            else if (step < 5) {
                 step++;
                 updateStepDisplay();
             }
