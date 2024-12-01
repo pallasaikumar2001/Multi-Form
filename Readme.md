@@ -21,10 +21,6 @@ Users should be able to:
 
 ![Screenshot](screenshot.png)
 
-## Links
-
-- **Solution URL**: [Your solution URL](#)
-- **Live Site URL**: [Your live site URL](#)
 
 ## My Process
 
@@ -40,9 +36,4 @@ Users should be able to:
 
 This project helped me enhance my skills in working with **Tailwind CSS**. Below are some examples of code I’m proud of:
 
-#### Tailwind CSS for Responsive Design
 
-```html
-<div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-  <!-- Content here -->
-</div>
