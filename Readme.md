@@ -34,6 +34,15 @@ Users should be able to:
 
 ### What I Learned
 
-This project helped me enhance my skills in working with **Tailwind CSS**. Below are some examples of code I’m proud of:
+This project provided significant insights into the following:
+* Form Validation: Implemented form validation for required fields like- email formatting, and step submissions.
+* Tailwind CSS: Leveraged utility-first classes to style components, enhancing design efficiency quickly.
+* DOM Manipulation: Managed multiple steps dynamically by updating the DOM as the user navigates through the form.
+  
+This project helped me enhance my skills in working with **Tailwind CSS**.
+
+
+
+
 
 
